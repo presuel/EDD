@@ -2,6 +2,28 @@ import java.util.Scanner;
 
 public class protolistaLibros {
 
+    public static void imprimirLista(nodoLibro iterador) {
+        if (iterador != null) {
+            System.out.println(iterador.getElemento().getAutor() + "(" +
+                    iterador.getElemento().getPublicacion() + "). " +
+                    iterador.getElemento().getNombre() + "\n$ " +
+                    iterador.getElemento().getPrecio());
+            //
+            imprimirLista(iterador.getEnlace());
+        }
+    }
+
+    public static void imprimirListaInvertida(nodoLibro iterador) {
+        if (iterador != null) {
+            imprimirListaInvertida(iterador.getEnlace());
+            //
+            System.out.println(iterador.getElemento().getAutor() + "(" +
+                    iterador.getElemento().getPublicacion() + "). " +
+                    iterador.getElemento().getNombre() + "\n$ " +
+                    iterador.getElemento().getPrecio());
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         //
@@ -45,6 +67,11 @@ public class protolistaLibros {
                     iterador.getElemento().getPrecio());
             iterador = iterador.getEnlace();
         }
+        //
+        System.out.println("\nLista de libros en orden de captura.\n");
+        imprimirLista(primero.getEnlace());
+        System.out.println("\nLista de libros en orden invertido.\n");
+        imprimirListaInvertida(primero.getEnlace());
         //
         scan.close();
     }

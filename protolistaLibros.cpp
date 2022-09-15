@@ -2,6 +2,28 @@
 #include "nodoLibro.h"
 using namespace std;
 
+void recorrerListaPrincipio(nodoLibro *iterador){
+	if( iterador ){
+		cout << iterador->getDato().getAutor() << " - " <<
+             iterador->getDato().getNombre() << " (" <<
+             iterador->getDato().getPublicacion() << ")\n\t$ " << 
+             iterador->getDato().getPrecio() << "\n";
+        //
+        recorrerListaPrincipio(iterador->getEnlace());
+	}
+}
+
+void recorrerListaInvertida(nodoLibro *iterador){
+	if( iterador ){
+        recorrerListaInvertida(iterador->getEnlace());
+        //
+        cout << iterador->getDato().getAutor() << " - " <<
+             iterador->getDato().getNombre() << " (" <<
+             iterador->getDato().getPublicacion() << ")\n\t$ " << 
+             iterador->getDato().getPrecio() << "\n";
+	}
+}
+
 int main(int argc, char *argv[]){
     //
     nodoLibro *inicio= new nodoLibro();     // Punto de acceso a la lista
@@ -48,5 +70,11 @@ int main(int argc, char *argv[]){
              iterador->getDato().getPrecio() << "\n";
         iterador= iterador->getEnlace();    // Avanza al siguiente nodo
     }
+    // ------------------------------------ Recorrido con recursividad
+    cout << "\nRecorriendo la lista con recursividad:\n";
+    recorrerListaPrincipio(inicio->getEnlace());
+    // ------------------------------------ Recorrido Invertido con recursividad
+    cout << "\nRecorriendo la lista invertida con recursividad:\n";
+    recorrerListaInvertida(inicio->getEnlace());
     return 0;
 }

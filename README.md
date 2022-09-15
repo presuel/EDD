@@ -20,4 +20,7 @@
 + v3.3.1 - Add queue_libros.cpp
 + v3.3.2 - Add queue_libros.java
 + v3.4.1 - Add listaDinamica_libro.h y sistemaGestorDeLibros.cpp
++ v3.4.2 - Add listaDinamica_libro.java y sistemaGestorDeLibros.java
+---
+
 ---

@@ -1,0 +1,6 @@
+# C++
+*.exe
+*.o
+
+# Java
+*.class

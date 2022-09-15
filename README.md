@@ -8,5 +8,7 @@
 + v1.2.1 - Add arreglolibro.cpp
 + v1.2.2 - Add arreglolibro.java
 + v1.3.1 - Add nodolibro.h y protolistalibros.cpp
++ v1.3.2 - Add nodolibro.java y protolistalibros.java
 ---
 
+---

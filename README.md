@@ -13,3 +13,5 @@
 + v2.1.1 - Upgrade protolistalibros.cpp with recursivity
 + v2.1.2 - Upgrade protolistalibros.java with recursivity
 ---
++ v3.1.1 - Add list_libros.cpp
+---

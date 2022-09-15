@@ -17,4 +17,5 @@
 + v3.1.2 - Add list_libros.java
 + v3.2.1 - Add stack_libros.cpp
 + v3.2.2 - Add stack_libros.java
++ v3.3.1 - Add queue_libros.cpp
 ---

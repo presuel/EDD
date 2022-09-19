@@ -24,4 +24,5 @@
 ---
 + v4.1.1 - Add nodoArbolLibro.h ArbolBinario_Libro.h arbol_Libros.cpp
 + v4.1.2 - Add nodoArbolLibro.java ArbolBinario_Libro.java arbol_Libros.java
++ v4.2.1 - Add Dijkstra_MatrizAdyacencia.cpp
 ---

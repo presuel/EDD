@@ -26,3 +26,6 @@
 + v4.1.2 - Add nodoArbolLibro.java ArbolBinario_Libro.java arbol_Libros.java
 + v4.2.1 - Add Dijkstra_MatrizAdyacencia.cpp
 ---
++ v5.1.1 - Upgrade order in listaDinamica_libro.h y sistemaGestorDeLibros.cpp
+
+---

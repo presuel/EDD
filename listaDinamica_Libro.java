@@ -64,8 +64,8 @@ public class listaDinamica_Libro {
 
     // elimina un libro al final.
     public Libro eliminaFinal() {
-        nodoLibro extraido = new nodoLibro();
-        if (elementos > 0) {
+        if (elementos > 1) {
+            nodoLibro extraido = new nodoLibro();
             iterador = primero.getEnlace();
             for (int i = 0; i < elementos - 2; i++) { // Al penúltimo nodo
                 iterador = iterador.getEnlace();
@@ -74,8 +74,16 @@ public class listaDinamica_Libro {
             iterador.setEnlace(null);
             ultimo.setEnlace(iterador);
             elementos--;
-        } //
-        return extraido.getElemento();
+            return extraido.getElemento();
+        } else if (elementos == 1) {
+            nodoLibro extraido = primero.getEnlace();
+            primero.setEnlace(null); // desconexión
+            ultimo.setEnlace(null);
+            elementos--;
+            return extraido.getElemento();
+        } else {
+            return ultimo.getElemento();
+        }
     }
 
     // dato de un nodo
@@ -104,6 +112,312 @@ public class listaDinamica_Libro {
                     iterador.getElemento().getPrecio();
         }
         return contenido;
+    }
+
+    // public void ordenarTitulo() { // ITERATIVO, INTERCAMBIANDO VALORES
+    // if (this.getElementos() > 1) {
+    // nodoLibro itemA = primero.getEnlace();
+    // for (int i = 0; i < this.getElementos() - 1; i++) {
+    // nodoLibro itemB = itemA.getEnlace();
+    // for (int j = i + 1; j < this.getElementos(); j++) {
+    // // Nombre
+    // if
+    // ((itemA.getElemento().getNombre()).compareTo(itemB.getElemento().getNombre())
+    // > 0) {
+    // nodoLibro itemX = new nodoLibro();
+    // itemX.setElemento(itemB.getElemento());
+    // itemB.setElemento(itemA.getElemento());
+    // itemA.setElemento(itemX.getElemento());
+    // }
+    // itemB = itemB.getEnlace();
+    // }
+    // itemA = itemA.getEnlace();
+    // }
+    // }
+    // }
+
+    // public void ordenarAutor() { // ITERATIVO, INTERCAMBIANDO VALORES
+    // if (this.getElementos() > 1) {
+    // nodoLibro itemA = primero.getEnlace();
+    // for (int i = 0; i < this.getElementos() - 1; i++) {
+    // nodoLibro itemB = itemA.getEnlace();
+    // for (int j = i + 1; j < this.getElementos(); j++) {
+    // // Autor
+    // if
+    // ((itemA.getElemento().getAutor()).compareTo(itemB.getElemento().getAutor()) >
+    // 0) {
+    // nodoLibro itemX = new nodoLibro();
+    // itemX.setElemento(itemB.getElemento());
+    // itemB.setElemento(itemA.getElemento());
+    // itemA.setElemento(itemX.getElemento());
+    // }
+    // itemB = itemB.getEnlace();
+    // }
+    // itemA = itemA.getEnlace();
+    // }
+    // }
+    // }
+
+    // public void ordenarPrecioAsc() { // ITERATIVO, INTERCAMBIANDO VALORES
+    // if (this.getElementos() > 1) {
+    // nodoLibro itemA = primero.getEnlace();
+    // for (int i = 0; i < this.getElementos() - 1; i++) {
+    // nodoLibro itemB = itemA.getEnlace();
+    // for (int j = i + 1; j < this.getElementos(); j++) {
+    // // Precio Ascencente
+    // if (itemA.getElemento().getPrecio() > itemB.getElemento().getPrecio()) {
+    // nodoLibro itemX = new nodoLibro();
+    // itemX.setElemento(itemB.getElemento());
+    // itemB.setElemento(itemA.getElemento());
+    // itemA.setElemento(itemX.getElemento());
+    // }
+    // itemB = itemB.getEnlace();
+    // }
+    // itemA = itemA.getEnlace();
+    // }
+    // }
+    // }
+
+    // public void ordenarPrecioDes() { // ITERATIVO, INTERCAMBIANDO VALORES
+    // if (this.getElementos() > 1) {
+    // nodoLibro itemA = primero.getEnlace();
+    // for (int i = 0; i < this.getElementos() - 1; i++) {
+    // nodoLibro itemB = itemA.getEnlace();
+    // for (int j = i + 1; j < this.getElementos(); j++) {
+    // // Precio Descencente
+    // if (itemA.getElemento().getPrecio() < itemB.getElemento().getPrecio()) {
+    // nodoLibro itemX = new nodoLibro();
+    // itemX.setElemento(itemB.getElemento());
+    // itemB.setElemento(itemA.getElemento());
+    // itemA.setElemento(itemX.getElemento());
+    // }
+    // itemB = itemB.getEnlace();
+    // }
+    // itemA = itemA.getEnlace();
+    // }
+    // }
+    // }
+
+    public void ordenarTitulo() { // RECURSIVO, MANIPULANDO APUNTADORES
+        QuickTitulo(primero, ultimo);
+    }
+
+    public void ordenarAutor() { // RECURSIVO, MANIPULANDO APUNTADORES
+        QuickAutor(primero, ultimo);
+    }
+
+    public void ordenarPrecioAsc() { // RECURSIVO, MANIPULANDO APUNTADORES
+        QuickPrecioAsc(primero, ultimo);
+    }
+
+    public void ordenarPrecioDes() { // RECURSIVO, MANIPULANDO APUNTADORES
+        QuickPrecioDes(primero, ultimo);
+    }
+
+    private void QuickTitulo(nodoLibro inicial, nodoLibro elfinal) {
+        // AAPR 2022 - Ordenamiento mediante manipulación de apuntadores y recursión.
+        iterador = inicial.getEnlace();
+        nodoLibro pivote = elfinal.getEnlace();
+        if (iterador != pivote) {
+            int menores = 0, mayores = 0;
+            nodoLibro D_i = new nodoLibro();
+            nodoLibro D_f = new nodoLibro();
+            nodoLibro I_i = new nodoLibro();
+            nodoLibro I_f = new nodoLibro();
+            while (iterador != pivote) {
+                if ((iterador.getElemento().getNombre()).compareTo(pivote.getElemento().getNombre()) > 0) {
+                    if (mayores > 0) {
+                        I_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        I_i.setEnlace(iterador);
+                    }
+                    I_f.setEnlace(iterador);
+                    mayores++;
+                } else {
+                    if (menores > 0) {
+                        D_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        D_i.setEnlace(iterador);
+                    }
+                    D_f.setEnlace(iterador);
+                    menores++;
+                }
+                iterador = iterador.getEnlace();
+            }
+            // Llamada recursiva para ordenamiento de los segmentos
+            if (menores > 1)
+                QuickTitulo(D_i, D_f);
+            if (mayores > 1)
+                QuickTitulo(I_i, I_f);
+            // Reunión de segmentos
+            if (menores > 0 && mayores > 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            } else if (menores > 0 && mayores == 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                elfinal.setEnlace(pivote);
+            } else if (menores == 0 && mayores > 0) {
+                inicial.setEnlace(pivote);
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            }
+        }
+    }
+
+    private void QuickAutor(nodoLibro inicial, nodoLibro elfinal) {
+        // AAPR 2022 - Ordenamiento mediante manipulación de apuntadores y recursión.
+        iterador = inicial.getEnlace();
+        nodoLibro pivote = elfinal.getEnlace();
+        if (iterador != pivote) {
+            int menores = 0, mayores = 0;
+            nodoLibro D_i = new nodoLibro();
+            nodoLibro D_f = new nodoLibro();
+            nodoLibro I_i = new nodoLibro();
+            nodoLibro I_f = new nodoLibro();
+            while (iterador != pivote) {
+                if ((iterador.getElemento().getAutor()).compareTo(pivote.getElemento().getAutor()) > 0) {
+                    if (mayores++ > 0) {
+                        I_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        I_i.setEnlace(iterador);
+                    }
+                    I_f.setEnlace(iterador);
+                } else {
+                    if (menores++ > 0) {
+                        D_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        D_i.setEnlace(iterador);
+                    }
+                    D_f.setEnlace(iterador);
+                }
+                iterador = iterador.getEnlace();
+            }
+            // Llamada recursiva para ordenamiento
+            if (menores > 1)
+                QuickAutor(D_i, D_f);
+            if (mayores > 1)
+                QuickAutor(I_i, I_f);
+            // Reunión de segmentos
+            if (menores > 0 && mayores > 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            } else if (menores > 0 && mayores == 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                elfinal.setEnlace(pivote);
+            } else if (menores == 0 && mayores > 0) {
+                inicial.setEnlace(pivote);
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            }
+        }
+    }
+
+    private void QuickPrecioAsc(nodoLibro inicial, nodoLibro elfinal) {
+        // AAPR 2022 - Ordenamiento mediante manipulación de apuntadores y recursión.
+        iterador = inicial.getEnlace();
+        nodoLibro pivote = elfinal.getEnlace();
+        if (iterador != pivote) {
+            int menores = 0, mayores = 0;
+            nodoLibro D_i = new nodoLibro();
+            nodoLibro D_f = new nodoLibro();
+            nodoLibro I_i = new nodoLibro();
+            nodoLibro I_f = new nodoLibro();
+            while (iterador != pivote) {
+                if (iterador.getElemento().getPrecio() > pivote.getElemento().getPrecio()) {
+                    if (mayores++ > 0) {
+                        I_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        I_i.setEnlace(iterador);
+                    }
+                    I_f.setEnlace(iterador);
+                } else {
+                    if (menores++ > 0) {
+                        D_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        D_i.setEnlace(iterador);
+                    }
+                    D_f.setEnlace(iterador);
+                }
+                iterador = iterador.getEnlace();
+            }
+            // Llamada recursiva para ordenamiento
+            if (menores > 1)
+                QuickAutor(D_i, D_f);
+            if (mayores > 1)
+                QuickAutor(I_i, I_f);
+            // Reunión de segmentos
+            if (menores > 0 && mayores > 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            } else if (menores > 0 && mayores == 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                elfinal.setEnlace(pivote);
+            } else if (menores == 0 && mayores > 0) {
+                inicial.setEnlace(pivote);
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            }
+        }
+    }
+
+    private void QuickPrecioDes(nodoLibro inicial, nodoLibro elfinal) {
+        // AAPR 2022 - Ordenamiento mediante manipulación de apuntadores y recursión.
+        iterador = inicial.getEnlace();
+        nodoLibro pivote = elfinal.getEnlace();
+        if (iterador != pivote) {
+            int menores = 0, mayores = 0;
+            nodoLibro D_i = new nodoLibro();
+            nodoLibro D_f = new nodoLibro();
+            nodoLibro I_i = new nodoLibro();
+            nodoLibro I_f = new nodoLibro();
+            while (iterador != pivote) {
+                if (iterador.getElemento().getPrecio() < pivote.getElemento().getPrecio()) {
+                    if (mayores++ > 0) {
+                        I_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        I_i.setEnlace(iterador);
+                    }
+                    I_f.setEnlace(iterador);
+                } else {
+                    if (menores++ > 0) {
+                        D_f.getEnlace().setEnlace(iterador);
+                    } else {
+                        D_i.setEnlace(iterador);
+                    }
+                    D_f.setEnlace(iterador);
+                }
+                iterador = iterador.getEnlace();
+            }
+            // Llamada recursiva para ordenamiento
+            if (menores > 1)
+                QuickAutor(D_i, D_f);
+            if (mayores > 1)
+                QuickAutor(I_i, I_f);
+            // Reunión de segmentos
+            if (menores > 0 && mayores > 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            } else if (menores > 0 && mayores == 0) {
+                D_f.getEnlace().setEnlace(pivote);
+                inicial.setEnlace(D_i.getEnlace());
+                elfinal.setEnlace(pivote);
+            } else if (menores == 0 && mayores > 0) {
+                inicial.setEnlace(pivote);
+                pivote.setEnlace(I_i.getEnlace());
+                elfinal.setEnlace(I_f.getEnlace());
+            }
+        }
     }
 
 }

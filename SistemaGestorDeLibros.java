@@ -33,33 +33,52 @@ public class SistemaGestorDeLibros {
         Scanner scan = new Scanner(System.in);
         listaDinamica_Libro coleccion = new listaDinamica_Libro();
         int opcion;
+        int exit = 12;
         do {
             // Menu
+            System.out.print("\033[H\033[2J");
             System.out.println("------- ------- ------- ------- -------");
             System.out.println("Sistema Gestor de Libros.");
-            System.out.println("[1] Agregar al inicio.");
-            System.out.println("[2] Agregar al final.");
-            System.out.println("[3] Eliminar primer libro.");
-            System.out.println("[4] Eliminar ultimo libro.");
-            System.out.println("[5] Cantidad de libros.");
-            System.out.println("[6] Imprimir lista de libros.");
-            System.out.println("[7] Imprimir los datos de un libro.");
-            System.out.println("[8] Salir del programa.");
+            System.out.println(" 1 | Agregar  | Inicio.");
+            System.out.println(" 2 | Agregar  | Final.");
+            System.out.println(" 3 | Eliminar | Primer libro.");
+            System.out.println(" 4 | Eliminar | Ultimo libro.");
+            System.out.println(" 5 | Imprimir | Cantidad de libros.");
+            System.out.println(" 6 | Imprimir | Lista completa.");
+            System.out.println(" 7 | Imprimir | Datos de un libro.");
+            System.out.println(" 8 | Ordenar  | Titulo.");
+            System.out.println(" 9 | Ordenar  | Autor.");
+            System.out.println("10 | Ordenar  | Precio Menor a Mayor.");
+            System.out.println("11 | Ordenar  | Precio Mayor a Menor.");
+            System.out.println("12 | Salir del programa.");
+            System.out.println("------- ------- ------- ------- -------");
             System.out.print("Accion a realizar: ");
             opcion = scan.nextInt();
             // -----------------
             switch (opcion) {
                 case 1:
                     capturaDatos(coleccion, "i");
+                    System.out.println("Se agregó el libro!");
                     break;
                 case 2:
                     capturaDatos(coleccion, "f");
+                    System.out.println("Se agregó el libro!");
                     break;
                 case 3:
-                    coleccion.eliminaInicio();
+                    if (!coleccion.isEmpty()) {
+                        coleccion.eliminaInicio();
+                        System.out.println("Se eliminó el libro!");
+                    } else {
+                        System.out.println("La lista esta vacia.");
+                    }
                     break;
                 case 4:
-                    coleccion.eliminaFinal();
+                    if (!coleccion.isEmpty()) {
+                        coleccion.eliminaFinal();
+                        System.out.println("Se eliminó el libro!");
+                    } else {
+                        System.out.println("La lista esta vacia.");
+                    }
                     break;
                 case 5:
                     System.out.println("Elementos: " + coleccion.getElementos() + ".\n");
@@ -86,14 +105,39 @@ public class SistemaGestorDeLibros {
                         System.out.println("Precio: $ " + accedido.getPrecio());
                     }
                     break;
-                case 8:
+                case 8: {
+                    coleccion.ordenarTitulo();
+                    System.out.println("Se ordenó la lista dinámica!");
+                    break;
+                }
+                case 9: {
+                    coleccion.ordenarAutor();
+                    System.out.println("Se ordenó la lista dinámica!");
+                    break;
+                }
+                case 10: {
+                    coleccion.ordenarPrecioAsc();
+                    System.out.println("Se ordenó la lista dinámica!");
+                    break;
+                }
+                case 11: {
+                    coleccion.ordenarPrecioDes();
+                    System.out.println("Se ordenó la lista dinámica!");
+                    break;
+                }
+                case 12:
                     System.out.println("Finalizando el programa!");
                     break;
                 default:
                     System.out.println("Error en la opcion ingresada.");
             }
-        } while (opcion != 8);
+            // Ligero detenimiento
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (opcion != exit);
         scan.close();
     }
-
 }

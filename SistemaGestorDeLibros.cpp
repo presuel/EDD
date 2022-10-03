@@ -18,17 +18,14 @@ Libro capturaLibro(){
     cout << "Autor: ";
 	getline( cin, tmp_string);
 	tmp_libro.setAutor(tmp_string);
-    tmp_libro.setAutor("no");
     cout << "Fecha publicacion: ";
 	cin >> tmp_int;
 	cin.ignore();
 	tmp_libro.setPublicacion(tmp_int);
-    tmp_libro.setPublicacion(0);
     cout << "Precio compra: ";
 	cin >> tmp_double;
 	cin.ignore();
 	tmp_libro.setPrecio(tmp_double);
-    tmp_libro.setPrecio(0);
     return tmp_libro;
 }
 
@@ -61,7 +58,7 @@ int main() {
     // ---------------------------------------------------------------------------
     int opc= 0;
     int estilo= 0;
-    int exit= 13;
+    int exit= 17;
     do {
         system("cls");
         if(estilo){ // Estilo reducido - 1
@@ -71,7 +68,8 @@ int main() {
             cout << "Imprimir | (5) Cantidad de libros (6) Lista (7) Datos de un libro.\n";
             cout << "Ordenar  | (8) Titulo (9) Autor (10) Precio Menor a Mayor (11) Precio Mayor a Menor.\n";
             cout << "Menu     | (12) Cambiar a menu expandido.\n";
-            cout << "Salir    | (13) Sin guardar cambios.\n";
+            cout << "Buscar   | (13) Libro x titulo (14) Libro x autor (15) Libros x titulo (16) Libros x autor\n";
+            cout << "Salir    | (17) Sin guardar cambios.\n";
             cout << "---------------------------------------------\n";
             cout << "Opcion: ";
         }else{ // Estilo expandido - 0
@@ -87,7 +85,11 @@ int main() {
             cout << "10 | Ordenar  | Precio Menor a Mayor.\n";
             cout << "11 | Ordenar  | Precio Mayor a Menor.\n";
             cout << "12 | Menu     | Cambiar a menu reducido.\n";
-            cout << "13 | Salir del programa.\n";
+            cout << "13 | Buscar   | Libro por Titulo.\n";
+            cout << "14 | Buscar   | Libro por Autor.\n";
+            cout << "15 | Buscar   | Libros por Titulo.\n";
+            cout << "16 | Buscar   | Libros por Autor.\n";
+            cout << "17 | Salir del programa.\n";
             cout << "---------------------------------------------\n";
             cout << "Opcion: ";
         }
@@ -183,7 +185,71 @@ int main() {
                 estilo= (estilo)?0:1;
                 break;
 			}
-            case(13): {                
+            case(13): {
+                string buscado;
+                cout << "Nombre de libro a buscar (coincidencia exacta): ";
+                getline(cin, buscado);
+                Libro libro= misLibros.buscarLibro_Nombre(buscado);
+                if( !libro.getNombre().empty() ){
+                    cout << "Titulo: " << libro.getNombre() << "\n";
+                    cout << "Autor: " << libro.getAutor() << "\n";
+                    cout << "Publicacion: " << libro.getPublicacion() << "\n";
+                    cout << "Precio: $" << libro.getPrecio() << "\n";
+                }else{
+                    cout << "No se encontró el libro \"" << buscado << "\".\n";
+                }
+                break;
+            }
+            case(14): {
+                string buscado;
+                cout << "Nombre del autor del libro (coincidencia exacta): ";
+                getline(cin, buscado);
+                Libro libro= misLibros.buscarLibro_Autor(buscado);
+                if( !libro.getNombre().empty() ){
+                    cout << "Titulo: " << libro.getNombre() << "\n";
+                    cout << "Autor: " << libro.getAutor() << "\n";
+                    cout << "Publicacion: " << libro.getPublicacion() << "\n";
+                    cout << "Precio: $" << libro.getPrecio() << "\n";
+                }else{
+                    cout << "No se encontró ningún libro de \"" << buscado << "\".\n";
+                }
+                break;
+            }
+            case(15): {
+                string buscado;
+                cout << "Nombre de libro a buscar (coincidencia exacta): ";
+                getline(cin, buscado);
+                ListaDinamica_Libro encontrados= misLibros.buscarLibros_Nombre(buscado);
+                if( encontrados.elementos()>0 ){
+                    encabezadoTabla();
+                    for(int i= 0; i<encontrados.elementos(); i++){
+                        Libro libro= encontrados.datoNodo(i);
+                        filaTabla(libro);
+					}
+                    pieTabla();
+                }else{
+                    cout << "No se encontraron coincidencias\n";
+                }
+                break;
+            }
+            case(16): {
+                string buscado;
+                cout << "Nombre del autor a buscar (coincidencia exacta): ";
+                getline(cin, buscado);
+                ListaDinamica_Libro encontrados= misLibros.buscarLibros_Autor(buscado);
+                if( encontrados.elementos()>0 ){
+                    encabezadoTabla();
+                    for(int i= 0; i<encontrados.elementos(); i++){
+                        Libro libro= encontrados.datoNodo(i);
+                        filaTabla(libro);
+					}
+                    pieTabla();
+                }else{
+                    cout << "No se encontraron coincidencias\n";
+                }
+                break;
+            }
+            case(17): {                
                 system("cls");
                 cout << "Finalizando programa.\n";
                 break;

@@ -25,6 +25,10 @@ public:
     void QuickAutor (nodoLibro *inicial, nodoLibro *final);
     void QuickPrecioAsc (nodoLibro *inicial, nodoLibro *final);
     void QuickPrecioDes (nodoLibro *inicial, nodoLibro *final);
+    Libro buscarLibro_Nombre(string buscado);
+    Libro buscarLibro_Autor(string buscado);
+    ListaDinamica_Libro buscarLibros_Nombre( string buscado );
+    ListaDinamica_Libro buscarLibros_Autor( string buscado );
 };
 
 ListaDinamica_Libro::ListaDinamica_Libro(){
@@ -375,6 +379,56 @@ void ListaDinamica_Libro::QuickPrecioDes (nodoLibro *inicial, nodoLibro *final) 
             final->setEnlace( I_f->getEnlace() );
         }
     }
+}
+
+Libro ListaDinamica_Libro::buscarLibro_Nombre(string buscado){
+    Libro libro;
+    iterador= primero->getEnlace();
+    while(iterador){
+        if((iterador->getDato().getNombre()).compare(buscado)==0){
+            libro= iterador->getDato();
+            return libro;
+        }
+        iterador= iterador->getEnlace();
+    }
+    return libro;
+}
+
+Libro ListaDinamica_Libro::buscarLibro_Autor(string buscado){
+    Libro libro;
+    iterador= primero->getEnlace();
+    while(iterador){
+        if((iterador->getDato().getAutor()).compare(buscado)==0){
+            libro= iterador->getDato();
+            return libro;
+        }
+        iterador= iterador->getEnlace();
+    }
+    return libro;
+}
+
+ListaDinamica_Libro ListaDinamica_Libro::buscarLibros_Nombre( string buscado ){
+    ListaDinamica_Libro encontrados;
+    iterador= primero->getEnlace();
+    while(iterador){
+        if((iterador->getDato().getNombre()).compare(buscado)==0){
+            encontrados.agregaNodoFinal( iterador->getDato() );
+        }
+        iterador= iterador->getEnlace();
+    }
+    return encontrados;
+}
+
+ListaDinamica_Libro ListaDinamica_Libro::buscarLibros_Autor( string buscado ){
+    ListaDinamica_Libro encontrados;
+    iterador= primero->getEnlace();
+    while(iterador){
+        if((iterador->getDato().getAutor()).compare(buscado)==0){
+            encontrados.agregaNodoFinal( iterador->getDato() );
+        }
+        iterador= iterador->getEnlace();
+    }
+    return encontrados;
 }
 
 #endif // LISTADINAMICA_LIBRO_H_INCLUDED

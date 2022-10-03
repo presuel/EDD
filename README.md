@@ -1,5 +1,5 @@
 ## Estructuras de Datos
-#### septiembre de 2022
+#### septiembre-octubre de 2022
 
 ---
 + v0.1.0 - Add UML.drawio
@@ -27,5 +27,8 @@
 + v4.2.1 - Add Dijkstra_MatrizAdyacencia.cpp
 ---
 + v5.1.1 - Upgrade order in listaDinamica_libro.h y sistemaGestorDeLibros.cpp
++ v5.1.2 - Upgrade order in listaDinamica_libro.java y sistemaGestorDeLibros.java
+---
++ v6.1.1 - Upgrade search in listaDinamica_libro.h y sistemaGestorDeLibros.cpp
 
 ---

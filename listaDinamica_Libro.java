@@ -420,4 +420,56 @@ public class listaDinamica_Libro {
         }
     }
 
+    public Libro buscarLibro_Nombre(String buscado) {
+        Libro libro = new Libro();
+        libro.setNombre("error");
+        iterador = primero.getEnlace();
+        while (iterador != null) {
+            if ((iterador.getElemento().getNombre()).compareTo(buscado) == 0) {
+                libro = iterador.getElemento();
+                return libro;
+            }
+            iterador = iterador.getEnlace();
+        }
+        return libro;
+    }
+
+    public Libro buscarLibro_Autor(String buscado) {
+        Libro libro = new Libro();
+        libro.setAutor("error");
+        iterador = primero.getEnlace();
+        while (iterador != null) {
+            if ((iterador.getElemento().getAutor()).compareTo(buscado) == 0) {
+                libro = iterador.getElemento();
+                return libro;
+            }
+            iterador = iterador.getEnlace();
+        }
+        return libro;
+    }
+
+    listaDinamica_Libro buscarLibros_Nombre(String buscado) {
+        listaDinamica_Libro encontrados = new listaDinamica_Libro();
+        iterador = primero.getEnlace();
+        while (iterador != null) {
+            if ((iterador.getElemento().getNombre()).compareTo(buscado) == 0) {
+                encontrados.agregaFinal(iterador.getElemento());
+            }
+            iterador = iterador.getEnlace();
+        }
+        return encontrados;
+    }
+
+    listaDinamica_Libro buscarLibros_Autor(String buscado) {
+        listaDinamica_Libro encontrados = new listaDinamica_Libro();
+        iterador = primero.getEnlace();
+        while (iterador != null) {
+            if ((iterador.getElemento().getAutor()).compareTo(buscado) == 0) {
+                encontrados.agregaFinal(iterador.getElemento());
+            }
+            iterador = iterador.getEnlace();
+        }
+        return encontrados;
+    }
+
 }

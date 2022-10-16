@@ -30,5 +30,5 @@
 + v5.1.2 - Upgrade order in listaDinamica_libro.java y sistemaGestorDeLibros.java
 ---
 + v6.1.1 - Upgrade search in listaDinamica_libro.h y sistemaGestorDeLibros.cpp
-
++ v6.1.2 - Upgrade search in listaDinamica_libro.java y sistemaGestorDeLibros.java
 ---

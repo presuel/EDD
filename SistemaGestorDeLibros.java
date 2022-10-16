@@ -33,7 +33,7 @@ public class SistemaGestorDeLibros {
         Scanner scan = new Scanner(System.in);
         listaDinamica_Libro coleccion = new listaDinamica_Libro();
         int opcion;
-        int exit = 12;
+        int exit = 16;
         do {
             // Menu
             System.out.print("\033[H\033[2J");
@@ -50,10 +50,15 @@ public class SistemaGestorDeLibros {
             System.out.println(" 9 | Ordenar  | Autor.");
             System.out.println("10 | Ordenar  | Precio Menor a Mayor.");
             System.out.println("11 | Ordenar  | Precio Mayor a Menor.");
-            System.out.println("12 | Salir del programa.");
+            System.out.println("12 | Buscar   | Libro por Titulo.");
+            System.out.println("13 | Buscar   | Libro por Autor.");
+            System.out.println("14 | Buscar   | Libros por Titulo.");
+            System.out.println("15 | Buscar   | Libros por Autor.");
+            System.out.println("16 | Salir del programa.");
             System.out.println("------- ------- ------- ------- -------");
             System.out.print("Accion a realizar: ");
             opcion = scan.nextInt();
+            scan.nextLine();
             // -----------------
             switch (opcion) {
                 case 1:
@@ -88,6 +93,8 @@ public class SistemaGestorDeLibros {
                         for (int i = 0; i < coleccion.getElementos(); i++) {
                             System.out.println(coleccion.getDatosLibro(i));
                         }
+                        System.out.println("------- Oprima ENTER para continuar -------");
+                        scan.nextLine();
                     } else {
                         System.out.println("No hay libros en la coleccion");
                     }
@@ -125,7 +132,84 @@ public class SistemaGestorDeLibros {
                     System.out.println("Se ordenó la lista dinámica!");
                     break;
                 }
-                case 12:
+                case 12: {
+                    System.out.println("Nombre de libro a buscar (coincidencia exacta): ");
+                    Libro libro = coleccion.buscarLibro_Nombre(scan.nextLine());
+                    if (libro.getNombre().compareTo("error") != 0) {
+                        System.out.println("----------------------------------------------");
+                        System.out.println("Titulo: " + libro.getNombre());
+                        System.out.println("Autor: " + libro.getAutor());
+                        System.out.println("Publicacion: " + libro.getPublicacion());
+                        System.out.println("Precio: $" + libro.getPrecio());
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        System.out.println("No se encontro el libro.");
+                    }
+                    break;
+                }
+                case 13: {
+                    System.out.println("Nombre del autor del libro (coincidencia exacta): ");
+                    Libro libro = coleccion.buscarLibro_Autor(scan.nextLine());
+                    if (libro.getAutor().compareTo("error") != 0) {
+                        System.out.println("----------------------------------------------");
+                        System.out.println("Titulo: " + libro.getNombre());
+                        System.out.println("Autor: " + libro.getAutor());
+                        System.out.println("Publicacion: " + libro.getPublicacion());
+                        System.out.println("Precio: $" + libro.getPrecio());
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        System.out.println("No se encontro ningun libro de ese autor.");
+                    }
+                    break;
+                }
+                case 14: {
+                    System.out.println("Nombre de libro a buscar (coincidencia exacta): ");
+                    listaDinamica_Libro encontrados = coleccion.buscarLibros_Nombre(scan.nextLine());
+                    if (encontrados.getElementos() > 0) {
+                        // titulo 50 autor 30 fecha 10 precio 10
+                        System.out.println("------- ------- ------- ------- -------");
+                        System.out.print(String.format("%1$-50s", "Titulo"));
+                        System.out.print(String.format("%1$-30s", "Autor"));
+                        System.out.print(String.format("%1$-10s", "Fecha"));
+                        System.out.println(String.format("%1$-10s", "Precio"));
+                        for (int i = 0; i < encontrados.getElementos(); i++) {
+                            Libro libro = encontrados.getLibro(i);
+                            System.out.print(String.format("%1$-50s", libro.getNombre()));
+                            System.out.print(String.format("%1$-30s", libro.getAutor()));
+                            System.out.print(String.format("%1$-10s", libro.getPublicacion()));
+                            System.out.println(String.format("%1$-10s", libro.getPrecio()));
+                        }
+                        System.out.println("------- Oprima ENTER para continuar -------");
+                        scan.nextLine();
+                    } else {
+                        System.out.println("No se encontraron coincidencias con el libro.\n");
+                    }
+                    break;
+                }
+                case 15: {
+                    System.out.println("Nombre del autor del libro a buscar (coincidencia exacta): ");
+                    listaDinamica_Libro encontrados = coleccion.buscarLibros_Autor(scan.nextLine());
+                    if (encontrados.getElementos() > 0) {
+                        System.out.println("------- ------- ------- ------- -------");
+                        System.out.print(String.format("%1$-50s", "Titulo"));
+                        System.out.print(String.format("%1$-30s", "Autor"));
+                        System.out.print(String.format("%1$-10s", "Fecha"));
+                        System.out.println(String.format("%1$-10s", "Precio"));
+                        for (int i = 0; i < encontrados.getElementos(); i++) {
+                            Libro libro = encontrados.getLibro(i);
+                            System.out.print(String.format("%1$-50s", libro.getNombre()));
+                            System.out.print(String.format("%1$-30s", libro.getAutor()));
+                            System.out.print(String.format("%1$-10s", libro.getPublicacion()));
+                            System.out.println(String.format("%1$-10s", libro.getPrecio()));
+                        }
+                        System.out.println("------- Oprima ENTER para continuar -------");
+                        scan.nextLine();
+                    } else {
+                        System.out.println("No se encontraron coincidencias con el autor.\n");
+                    }
+                    break;
+                }
+                case 16:
                     System.out.println("Finalizando el programa!");
                     break;
                 default:

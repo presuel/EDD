@@ -1,6 +1,7 @@
 // SGL - SISTEMA GESTOR DE LIBROS
 
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <iomanip> 
 #include "listaDinamica_Libro.h"
@@ -55,10 +56,31 @@ void pieTabla(){
 
 int main() {
     ListaDinamica_Libro misLibros;
+    fstream fileLibros;
     // ---------------------------------------------------------------------------
     int opc= 0;
     int estilo= 0;
-    int exit= 17;
+    int exit= 19;
+    int almacenados= -1;
+    // ---------------------------------------------------------------------------
+    fileLibros.open("biblioteca.txt", ios::in);
+    string cadena;
+    if( !fileLibros ){
+        fileLibros.open("biblioteca.txt", ios::app);
+        almacenados= 0;
+    }else{
+        while ( !fileLibros.eof() ){
+            getline( fileLibros, cadena ); // Titulo
+            getline( fileLibros, cadena ); // Autor
+            getline( fileLibros, cadena ); // Fecha
+            getline( fileLibros, cadena ); // Precio
+            almacenados++;
+        }
+    }
+    fileLibros.close();
+    cout << "Registros encontrados: " << almacenados << ".\n";
+    system("pause");
+    // ---------------------------------------------------------------------------
     do {
         system("cls");
         if(estilo){ // Estilo reducido - 1
@@ -69,7 +91,8 @@ int main() {
             cout << "Ordenar  | (8) Titulo (9) Autor (10) Precio Menor a Mayor (11) Precio Mayor a Menor.\n";
             cout << "Menu     | (12) Cambiar a menu expandido.\n";
             cout << "Buscar   | (13) Libro x titulo (14) Libro x autor (15) Libros x titulo (16) Libros x autor\n";
-            cout << "Salir    | (17) Sin guardar cambios.\n";
+            cout << "Archivo  | (17) Cargar registros (18) Guardar registros\n";
+            cout << "Salir    | (19) Sin guardar cambios.\n";
             cout << "---------------------------------------------\n";
             cout << "Opcion: ";
         }else{ // Estilo expandido - 0
@@ -89,7 +112,9 @@ int main() {
             cout << "14 | Buscar   | Libro por Autor.\n";
             cout << "15 | Buscar   | Libros por Titulo.\n";
             cout << "16 | Buscar   | Libros por Autor.\n";
-            cout << "17 | Salir del programa.\n";
+            cout << "17 | Archivo  | Cargar registros.\n";
+            cout << "18 | Archivo  | Guardar registros.\n";
+            cout << "19 | Salir del programa.\n";
             cout << "---------------------------------------------\n";
             cout << "Opcion: ";
         }
@@ -249,7 +274,47 @@ int main() {
                 }
                 break;
             }
-            case(17): {                
+            case(17): {  
+                fileLibros.open("biblioteca.txt", ios::in);
+                while ( !fileLibros.eof() ){
+                    string cadena1, cadena2, cadena3, cadena4;
+                    getline( fileLibros, cadena1 ); // Titulo
+                    getline( fileLibros, cadena2 ); // Autor
+                    getline( fileLibros, cadena3 ); // Fecha
+                    getline( fileLibros, cadena4 ); // Precio
+                    Libro nuevo;
+                    if( !cadena1.empty() ){
+                        nuevo.setNombre(cadena1);
+                        nuevo.setAutor(cadena2);
+                        nuevo.setPublicacion( atoi(cadena3.c_str()) );                
+                        nuevo.setPrecio( atof(cadena4.c_str()) );
+                        misLibros.agregaNodoFinal(nuevo);
+                    }
+                }
+                fileLibros.close();
+                break;
+            }
+            case(18): {  
+                if( misLibros.elementos() ){
+                    // Se abre archivo en modo salida
+                    fileLibros.open("biblioteca.txt", ios::out);
+                    // Se hace el recorrido de la lista dinámica
+                    for(int i= 0; i<misLibros.elementos(); i++){
+                        Libro tmp_libro= misLibros.datoNodo(i);
+                        // Cada nodo visitado genera una impresión en el archivo
+                        fileLibros << tmp_libro.getNombre() << "\n";
+                        fileLibros << tmp_libro.getAutor() << "\n";
+                        fileLibros << tmp_libro.getPublicacion() << "\n";
+                        fileLibros << tmp_libro.getPrecio() << "\n";
+                    }
+                    // Se cierra el archivo
+                    fileLibros.close();
+                }else{
+                    cout << "No hay registros en la Lista Dinamica.\n";
+                }                
+                break;
+            }
+            case(19): {                
                 system("cls");
                 cout << "Finalizando programa.\n";
                 break;

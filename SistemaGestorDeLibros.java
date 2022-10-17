@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Scanner;
 
 public class SistemaGestorDeLibros {
@@ -31,9 +32,38 @@ public class SistemaGestorDeLibros {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        int contador= -1;
+        // -------------------------------------------------------------------------
+        try ( FileWriter fw = new FileWriter("biblioteca.txt", true) ){            
+            fw.close();
+            contador= 0;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        // -------------------------------------------------------------------------
+        try ( BufferedReader bfr = new BufferedReader(new FileReader("biblioteca.txt")) ){
+            String cadena = bfr.readLine();
+            contador++;
+            while( cadena != null ){
+                cadena= bfr.readLine(); // Se cuentan las lineas en general y luego se divide por el número de campos
+                contador++;
+            }
+            contador /= 4;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        // -------------------------------------------------------------------------
+        if( contador > 0){
+            System.out.println("Registros de libros encontrados: " + contador);
+        } else {
+            System.out.println("Nose encontraron registros de libros.");
+        }
+        System.out.println("------- Oprima ENTER para continuar -------");
+        scan.nextLine();
+        // -------------------------------------------------------------------------
         listaDinamica_Libro coleccion = new listaDinamica_Libro();
         int opcion;
-        int exit = 16;
+        int exit = 18;
         do {
             // Menu
             System.out.print("\033[H\033[2J");
@@ -54,7 +84,9 @@ public class SistemaGestorDeLibros {
             System.out.println("13 | Buscar   | Libro por Autor.");
             System.out.println("14 | Buscar   | Libros por Titulo.");
             System.out.println("15 | Buscar   | Libros por Autor.");
-            System.out.println("16 | Salir del programa.");
+            System.out.println("16 | Archivo  | Cargar registros.");
+            System.out.println("17 | Archivo  | Guardar registros");
+            System.out.println("18 | Salir del programa.");
             System.out.println("------- ------- ------- ------- -------");
             System.out.print("Accion a realizar: ");
             opcion = scan.nextInt();
@@ -209,7 +241,49 @@ public class SistemaGestorDeLibros {
                     }
                     break;
                 }
-                case 16:
+                case 16: {                    
+                    try ( BufferedReader bfr = new BufferedReader(new FileReader("biblioteca.txt")) ){
+                        for(int i=0; i<contador; i++){
+                            String cadena1, cadena2, cadena3, cadena4;
+                            cadena1= bfr.readLine();
+                            cadena2= bfr.readLine();
+                            cadena3= bfr.readLine();
+                            cadena4= bfr.readLine();
+                            Libro nuevo= new Libro();
+                            if( !cadena1.isEmpty() ){
+                                nuevo.setNombre(cadena1);
+                                nuevo.setAutor(cadena2);
+                                nuevo.setPublicacion(  Integer.parseInt(cadena3));
+                                nuevo.setPrecio( Double.parseDouble(cadena4) );
+                                coleccion.agregaFinal(nuevo);
+                            }
+                        }
+                        System.out.println("Se recuperaron los registros almacenados en el archivo.");
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                case 17: {
+                    if(coleccion.getElementos() > 0){
+                        try ( BufferedWriter archivo = new BufferedWriter(new FileWriter("biblioteca.txt")) ){
+                            for(int i= 0; i<coleccion.getElementos(); i++){
+                                Libro tmp_libro= coleccion.getLibro(i);
+                                archivo.write( tmp_libro.getNombre() + "\n");
+                                archivo.write( tmp_libro.getAutor() + "\n" );
+                                archivo.write( tmp_libro.getPublicacion() + "\n" );
+                                archivo.write( String.valueOf(tmp_libro.getPrecio()) + "\n" );
+                            }
+                            System.out.println("Se guardaron los registros en el archivo.");
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    }else{
+                        System.out.print("No hay registros en la Lista Dinamica.");
+                    }
+                    break;
+                }
+                case 18:
                     System.out.println("Finalizando el programa!");
                     break;
                 default:

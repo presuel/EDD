@@ -33,5 +33,5 @@
 + v6.1.2 - Upgrade search in listaDinamica_libro.java y sistemaGestorDeLibros.java
 ---
 + v6.2.1 - Upgrade SistemaGestorDeLibros.cpp with persistence
-
++ v6.2.2 - Upgrade SistemaGestorDeLibros.java with persistence
 ---

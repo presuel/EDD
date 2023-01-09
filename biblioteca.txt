@@ -1,0 +1,144 @@
+Matemáticas para la computación
+José A. Jiménez Murillo
+2009
+329.00
+Matemáticas discretas
+Ramón Espinosa Armenta
+2010
+328.00
+Redes Cisco. Curso práctico de formación para la certificación CCNA
+Daniel Pérez Torres
+2018
+468.00
+Telecomunicaciones. Tecnologías, redes y servicios
+José Manuel Huidobro
+2014
+488.00
+Laravel. Aprende a crear aplicaciones web desde cero
+José López Quijado
+2021
+498.00
+Laravel. Curso práctico avanzado
+José López Quijado
+2022
+458.00
+Programación en Go
+Mario Macías Lloret
+2021
+298.00
+Gestión de proyectos con Project, Excel y Visio. Bajo el enfoque del PMBOK 5
+Luis Angulo Aguirre
+2013
+240.00
+Gestión de bases de datos con SQL. MySQL y Access.
+Borja Orbegozo Arana
+2013
+218.00
+Domine XHTML 1.0 y CSS 2.0
+José López Quijado
+2009
+199.00
+Domine PHP y MySQL
+José López Quijado
+2010
+398.00
+Domine Javascript
+José López Quijado
+2007
+415.00
+El gran libro de Android
+Jesús Tomás Gironés
+2013
+299.90
+Android. Del diseño de la arquitectura al despliegue profesional.
+Ángel Vázquez Vázquez
+2019
+288.00
+Algoritmos y diagramas de flujo con raptor
+Danilo Dominguez
+2018
+348.00
+Programación estructurada: Raptor y Lenguaje C
+Edgar Danilo Dominguez Vera
+2014
+258.00
+Programación en C, C++, Java y UML
+Luis Joyanes Aguilar
+2014
+410.00
+Cómo programar en Java
+Paul Deitel
+2008
+460.00
+Algoritmos a fondo con implementaciones en C y Java
+Pablo Augusto Sznajdleder
+2018
+448.00
+Bases de datos. Diseño, implementación y administración
+Carlos Coronel
+2011
+599.00
+Fundamentos de programación. Algoritmos, estructuras de datos y objetos.
+Luis Joyanes Aguilar
+2003
+450.00
+UML y Patrones
+Craig Larman
+2003
+600.00
+Proyectos de sistemas de información
+Gabriel Baca Urbina
+2015
+398.00
+Análisis y diseño de sistemas de información
+Jamess Senn
+1992
+380.00
+Redes y seguridad
+Matías Katz
+2013
+229.00
+Redes de computadoras
+Natalia Olifer
+2009
+410.00
+Ecommerce 360
+Anabel Durán
+2018
+348.00
+Domine Joomla!
+Antonio Menchén Peñuela
+2013
+170.00
+Domine Joomla!
+Antonio Menchén Peñuela
+2013
+180.00
+Administración de sistemas operativos. Un enfoque práctico.
+Julio Gómez López
+2011
+369.00
+Conceptos de sistemas operativos. Teoría y práctica
+José Torres Jiménez
+2001
+220.00
+Mi PC. Actualización, configuración, mantenimiento y reparación
+José María Martín-Pozuelo
+2011
+328.00
+Estructura de computadores. Problemas resueltos
+María Isabel García Clemente
+2006
+299.00
+Estructura de computadores. Programación del procesador MIPS y su ensamblador
+José Antonio Álvarez Bermejo
+2009
+99.90
+Administración y control de la calidad
+James Evans
+2015
+540.00
+Estrategias de enseñanza-aprendizaje
+Julio H. Pimienta Prieto
+2012
+280.00

@@ -246,14 +246,17 @@ void ListaDinamica_Libro::QuickTitulo (nodoLibro *inicial, nodoLibro *final) {
             inicial->setEnlace( D_i->getEnlace() );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores>0 && mayores==0) {
             D_f->getEnlace()->setEnlace( pivote );
             inicial->setEnlace( D_i->getEnlace() );
             final->setEnlace( pivote );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores==0 && mayores>0) {
             inicial->setEnlace( pivote );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         }
     }
 }
@@ -287,14 +290,17 @@ void ListaDinamica_Libro::QuickAutor (nodoLibro *inicial, nodoLibro *final) {
             inicial->setEnlace( D_i->getEnlace() );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores>0 && mayores==0) {
             D_f->getEnlace()->setEnlace( pivote );
             inicial->setEnlace( D_i->getEnlace() );
             final->setEnlace( pivote );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores==0 && mayores>0) {
             inicial->setEnlace( pivote );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         }
     }
 }
@@ -328,14 +334,17 @@ void ListaDinamica_Libro::QuickPrecioAsc (nodoLibro *inicial, nodoLibro *final) 
             inicial->setEnlace( D_i->getEnlace() );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores>0 && mayores==0) {
             D_f->getEnlace()->setEnlace( pivote );
             inicial->setEnlace( D_i->getEnlace() );
             final->setEnlace( pivote );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores==0 && mayores>0) {
             inicial->setEnlace( pivote );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         }
     }
 }
@@ -369,14 +378,17 @@ void ListaDinamica_Libro::QuickPrecioDes (nodoLibro *inicial, nodoLibro *final) 
             inicial->setEnlace( D_i->getEnlace() );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores>0 && mayores==0) {
             D_f->getEnlace()->setEnlace( pivote );
             inicial->setEnlace( D_i->getEnlace() );
             final->setEnlace( pivote );
+            final->getEnlace()->setEnlace(NULL);
         } else if(menores==0 && mayores>0) {
             inicial->setEnlace( pivote );
             pivote->setEnlace( I_i->getEnlace() );
             final->setEnlace( I_f->getEnlace() );
+            final->getEnlace()->setEnlace(NULL);
         }
     }
 }

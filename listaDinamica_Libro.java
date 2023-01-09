@@ -255,14 +255,17 @@ public class listaDinamica_Libro {
                 inicial.setEnlace(D_i.getEnlace());
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores > 0 && mayores == 0) {
                 D_f.getEnlace().setEnlace(pivote);
                 inicial.setEnlace(D_i.getEnlace());
                 elfinal.setEnlace(pivote);
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores == 0 && mayores > 0) {
                 inicial.setEnlace(pivote);
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             }
         }
     }
@@ -306,14 +309,17 @@ public class listaDinamica_Libro {
                 inicial.setEnlace(D_i.getEnlace());
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores > 0 && mayores == 0) {
                 D_f.getEnlace().setEnlace(pivote);
                 inicial.setEnlace(D_i.getEnlace());
                 elfinal.setEnlace(pivote);
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores == 0 && mayores > 0) {
                 inicial.setEnlace(pivote);
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             }
         }
     }
@@ -357,14 +363,17 @@ public class listaDinamica_Libro {
                 inicial.setEnlace(D_i.getEnlace());
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores > 0 && mayores == 0) {
                 D_f.getEnlace().setEnlace(pivote);
                 inicial.setEnlace(D_i.getEnlace());
                 elfinal.setEnlace(pivote);
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores == 0 && mayores > 0) {
                 inicial.setEnlace(pivote);
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             }
         }
     }
@@ -408,14 +417,17 @@ public class listaDinamica_Libro {
                 inicial.setEnlace(D_i.getEnlace());
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores > 0 && mayores == 0) {
                 D_f.getEnlace().setEnlace(pivote);
                 inicial.setEnlace(D_i.getEnlace());
                 elfinal.setEnlace(pivote);
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             } else if (menores == 0 && mayores > 0) {
                 inicial.setEnlace(pivote);
                 pivote.setEnlace(I_i.getEnlace());
                 elfinal.setEnlace(I_f.getEnlace());
+                elfinal.getEnlace().setEnlace(elfinal.getEnlace());
             }
         }
     }
